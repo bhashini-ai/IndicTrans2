@@ -1,6 +1,6 @@
 # IndicTrans2
 
-[Paper](https://arxiv.org/abs/2305.16307) | [Website](https://ai4bharat.iitm.ac.in/indic-trans2) | [Demo](https://models.ai4bharat.org/#/nmt/v2)
+[📜 Paper](https://arxiv.org/abs/2305.16307) | [🌐 Website](https://ai4bharat.iitm.ac.in/indic-trans2) | [▶️ Demo](https://models.ai4bharat.org/#/nmt/v2) | [🤗 HF Inference](https://github.com/AI4Bharat/IndicTrans2/tree/main/huggingface_inference)
 
 IndicTrans2 is the first open-source transformer-based multilingual NMT model that supports high-quality translations across all the 22 scheduled Indic languages — including multiple scripts for low-resouce languages like Kashmiri, Manipuri and Sindhi. It adopts script unification wherever feasible to leverage transfer learning by lexical sharing between languages. Overall, the model supports five scripts Perso-Arabic (Kashmiri, Sindhi, Urdu), Ol Chiki (Santali), Meitei (Manipuri), Latin (English), and Devanagari (used for all the remaining languages).
 
@@ -59,6 +59,11 @@ Here is the list of languages supported by the IndicTrans2 models:
   </tr>
 </tbody>
 </table>
+
+
+## Updates
+
+- 🚨 Sep 9, 2023 - Added HF compatible IndicTrans2 models. Please refer to the [README](https://github.com/AI4Bharat/IndicTrans2/tree/main/huggingface_inference) for detailed example usage.
 
 
 ## Tables of Contents
@@ -122,7 +127,7 @@ git clone https://github.com/AI4Bharat/IndicTrans2
 cd IndicTrans2
 
 # Install all the dependencies and requirements associated with the project.
-bash install.sh
+source install.sh
 ```
 
 Note: We recommend creating a virtual environment with python>=3.7.
@@ -210,10 +215,12 @@ IN22 test set is a newly created comprehensive benchmark for evaluating machine 
   <tr>
     <td>IN22-Gen (IN22-Wiki + IN22-Web)</td>
     <td>1024 sentences</td>
+    <td>🤗 <a href="https://huggingface.co/datasets/ai4bharat/IN22-Gen">ai4bharat/IN22-Gen</td>
   </tr>
   <tr>
     <td>IN22-Conv</td>
     <td>1503 sentences</td>
+    <td>🤗 <a href="https://huggingface.co/datasets/ai4bharat/IN22-Conv">ai4bharat/IN22-Conv</td>
   </tr>
 </tbody>
 </table>

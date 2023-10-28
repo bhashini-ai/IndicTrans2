@@ -7,8 +7,8 @@ echo "Setting up the environment in the $root_dir"
 #          create and activate the virtual environment
 # --------------------------------------------------------------
 echo "Creating a virtual environment with python3"
-conda create -n itv2 python=3.9 -y
-conda activate itv2
+conda create -n itv2_hf python=3.9 -y
+conda activate itv2_hf
 
 echo "Installing all the dependencies"
 conda install pip
@@ -33,12 +33,14 @@ cd indic_nlp_library
 python3 -m pip install ./
 cd $root_dir
 
+
 # --------------------------------------------------------------
 #               Install additional utility packages
 # --------------------------------------------------------------
-python3 -m pip install nltk sacremoses regex pandas mock transformers==4.28.1 sacrebleu==2.3.1 urduhack[tf] mosestokenizer ctranslate2==3.9.0 gradio
+python3 -m pip install sacremoses pandas regex mock transformers==4.33.2 urduhack[tf] mosestokenizer
 python3 -c "import urduhack; urduhack.download()"
-python3 -c "import nltk; nltk.download('punkt')"
+python3 -m pip install bitsandbytes scipy accelerate datasets
+
 
 # --------------------------------------------------------------
 #               Sentencepiece for tokenization
@@ -46,13 +48,5 @@ python3 -c "import nltk; nltk.download('punkt')"
 # build the cpp binaries from the source repo in order to use the command line utility
 # source repo: https://github.com/google/sentencepiece
 python3 -m pip install sentencepiece
-
-# --------------------------------------------------------------
-#               Fairseq Installation from Source
-# --------------------------------------------------------------
-git clone https://github.com/pytorch/fairseq.git
-cd fairseq
-python3 -m pip install ./
-cd $root_dir
 
 echo "Setup completed!"
