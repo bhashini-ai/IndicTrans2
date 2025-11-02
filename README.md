@@ -1,6 +1,6 @@
 # IndicTrans2
 
-[📜 Paper](https://arxiv.org/abs/2305.16307) | [🌐 Website](https://ai4bharat.iitm.ac.in/indic-trans2) | [▶️ Demo](https://models.ai4bharat.org/#/nmt/v2) | [🤗 HF Inference](https://github.com/AI4Bharat/IndicTrans2/tree/main/huggingface_inference)
+[📜 Paper](https://arxiv.org/abs/2305.16307) | [🌐 Website](https://ai4bharat.iitm.ac.in/indic-trans2) | [▶️ Demo](https://models.ai4bharat.org/#/nmt/v2) | [🤗 HF Interface](https://github.com/AI4Bharat/IndicTrans2/tree/main/huggingface_interface) | [![colab link](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AI4Bharat/IndicTrans2/blob/main/huggingface_interface/colab_inference.ipynb)
 
 IndicTrans2 is the first open-source transformer-based multilingual NMT model that supports high-quality translations across all the 22 scheduled Indic languages — including multiple scripts for low-resouce languages like Kashmiri, Manipuri and Sindhi. It adopts script unification wherever feasible to leverage transfer learning by lexical sharing between languages. Overall, the model supports five scripts Perso-Arabic (Kashmiri, Sindhi, Urdu), Ol Chiki (Santali), Meitei (Manipuri), Latin (English), and Devanagari (used for all the remaining languages).
 
@@ -60,11 +60,12 @@ Here is the list of languages supported by the IndicTrans2 models:
 </tbody>
 </table>
 
-
 ## Updates
-
-- 🚨 Sep 9, 2023 - Added HF compatible IndicTrans2 models. Please refer to the [README](https://github.com/AI4Bharat/IndicTrans2/tree/main/huggingface_inference) for detailed example usage.
-
+- 🚨 Jan 18, 2025 - Long Context Models- RoPE-based variants of IndicTrans2 models capable of handling sequence lengths **upto 2048 tokens** are available [here](https://huggingface.co/collections/prajdabre/indictrans2-rope-6742ddac669a05db0804db35). 
+- 🚨 Dec 20, 2024 - The latest releases of the high-quality human-annotated BPCC-Seed dataset would henceforth be made available on the [AI4Bharat Website](https://ai4bharat.iitm.ac.in/datasets/bpcc).
+- 🚨 Dec 30, 2023 - Migrated IndicTrans2 tokenizer for HF compatible IndicTrans2 models to [IndicTransToolkit](https://github.com/VarunGumma/IndicTransToolkit) and will be maintained separately there from now onwards. Add LoRA fine-tuning scripts for our IndicTrans2 models in [huggingface_interface](https://github.com/AI4Bharat/IndicTrans2/tree/main/huggingface_interface).
+- 🚨 Dec 1, 2023 - Release of Indic-Indic model and corresponding distilled variants for each base model. Please refer to the [Download section](https://github.com/AI4Bharat/IndicTrans2#multilingual-translation-models) for the checkpoints.
+- 🚨 Sep 9, 2023 - Added HF compatible IndicTrans2 models. Please refer to the [README](https://github.com/AI4Bharat/IndicTrans2/tree/main/huggingface_interface) for detailed example usage.
 
 ## Tables of Contents
 
@@ -88,34 +89,32 @@ Here is the list of languages supported by the IndicTrans2 models:
 - [LICENSE](#license)
 - [Citation](#citation)
 
-
 ## Download Models and Other Artifacts
-
 
 ### Multilingual Translation Models
 
-| Model                                     | En-Indic | Indic-En | Evaluations           |
-|-------------------------------------------|----------|----------|-----------------------|
-| Preprint (used for benchmarking)          | [download](https://indictrans2-public.objectstore.e2enetworks.net/it2_preprint_ckpts/en-indic-preprint.zip) | [download](https://indictrans2-public.objectstore.e2enetworks.net/it2_preprint_ckpts/indic-en-preprint.zip) | [translations](https://indictrans2-public.objectstore.e2enetworks.net/translation_outputs.zip) (as of May 10, 2023), [metrics](https://drive.google.com/drive/folders/1lOOdaU0VdRSBgJEsNav5zC7wwLBis9NI?usp=sharing) |
-| Deployment (~~recommend for commercial use~~)* | [download](https://indictrans2-public.objectstore.e2enetworks.net/it2_deployment_ckpts/en-indic-deploy.zip) | [download](https://indictrans2-public.objectstore.e2enetworks.net/it2_deployment_ckpts/indic-en-deploy.zip) |                       |
-
-> **Note** :- We have updated our inference pipelines on 23 June 2023, and now the preprint models are robust enough to handle all the special cases like URLs and emails and we recommend using the Preprint models for all use cases.
+| Model                        | En-Indic                                                                                                    | Indic-En                                                                                                    | Indic-Indic                                                                                            | Evaluations                                                                                                                                                                                                          |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Base (used for benchmarking) | [Fairseq](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/en-indic-preprint.tar.gz) & [HF](https://huggingface.co/ai4bharat/indictrans2-en-indic-1B) | [fairseq](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/indic-en-preprint.tar.gz) & [HF](https://huggingface.co/ai4bharat/indictrans2-indic-en-1B) | [HF](https://huggingface.co/ai4bharat/indictrans2-indic-indic-1B)  | [translations](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/translation_outputs.tar.gz) (as of May 10, 2023), [metrics](https://drive.google.com/drive/folders/1lOOdaU0VdRSBgJEsNav5zC7wwLBis9NI?usp=sharing) |
+| Distilled                    | [Fairseq](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/en-indic-dist.tar.gz) & [HF](https://huggingface.co/ai4bharat/indictrans2-en-indic-dist-200M)         | [Fairseq](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/indic-en-dist.tar.gz) & [HF](https://huggingface.co/ai4bharat/indictrans2-indic-en-dist-200M)         | [HF](https://huggingface.co/ai4bharat/indictrans2-indic-indic-dist-320M) |
 
 ### Training Data
 
-| Data                                     | URL      |
-|------------------------------------------|----------|
-| Bharat Parallel Corpus Collection (BPCC) | [download](https://indictrans2-public.objectstore.e2enetworks.net/BPCC.zip) |
-| Back-translation (BPCC-BT)               | [download](https://indictrans2-public.objectstore.e2enetworks.net/BT_data.zip) |
+|Data                                  | URL                                                                                          |
+|-------------------------------------------|--------------------------------------------------------------------------------------------------|
+| ✨ BPCC-Seed Latest Release           | [HF Config: bpcc-seed-latest](https://huggingface.co/datasets/ai4bharat/BPCC)                                           |
+| BPCC (*Used in Paper - utilizes the BPCC-Seed V1 dataset*)    | [HF Config: bpcc-seed-v1](https://huggingface.co/datasets/ai4bharat/BPCC)                      |
+| Back-translation (BPCC-BT)            | Will be updated                   |
+| Full Data Split            | [Download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/BPCC.zip)                   |
+
 
 
 ### Evaluation Data
 
-| Data                    | URL      |
-|-------------------------|----------|
-| IN22 test set           | [download](https://indictrans2-public.objectstore.e2enetworks.net/IN22_testset.zip) |
-| FLORES-22 Indic dev set | [download](https://indictrans2-public.objectstore.e2enetworks.net/flores-22_dev.zip) |
-
+| Data                    | URL                                                                                  |
+| ----------------------- | ------------------------------------------------------------------------------------ |
+| IN22 test set           | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/IN22_testset.zip)  |
+| FLORES-22 Indic dev set | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/flores-22_dev.zip) |
 
 ## Installation
 
@@ -132,9 +131,13 @@ source install.sh
 
 Note: We recommend creating a virtual environment with python>=3.7.
 
+### Additional notes about Installation
+The ``prepare_data_joint_finetuning.sh`` and ``prepare_data_joint_training.sh`` scripts expect that the sentencepiece commandline utility and GNU parallel are installed.
+1. To install the sentencepiece command line utility, please follow the instructions [here](https://github.com/google/sentencepiece?tab=readme-ov-file#build-and-install-sentencepiece-command-line-tools-from-c-source).
+2. Please check if GNU parallel is installed, if not please install the same or alternatively in case of installation issues, remove ``parallel --pipe --keep-order`` from the respective training / finetuning script as well as ``apply_sentence_piece.sh``.
+
 
 ## Data
-
 
 ### Training
 
@@ -170,7 +173,7 @@ You can find the contribution from different sources in the following table:
     <td>18.5K</td>
   </tr>
   <tr>
-    <td>ICLI</td>
+    <td>ILCI</td>
     <td>1.3M</td>
   </tr>
   <tr>
@@ -208,7 +211,7 @@ Additionally, we provide augmented back-translation data generated by our interm
 
 ### Evaluation
 
-IN22 test set is a newly created comprehensive benchmark for evaluating machine translation performance in multi-domain, n-way parallel contexts across 22 Indic languages. It has been created from three distinct subsets, namely IN22-Wiki, IN22-Web and IN22-Conv. The Wikipedia and Web sources subsets offer diverse content spanning news, entertainment, culture, legal, and India-centric topics.  IN22-Wiki and IN22-Web have been combined and considered for evaluation purposes and released as IN22-Gen. Meanwhile, IN22-Conv the conversation domain subset is designed to assess translation quality in typical day-to-day conversational-style applications.
+IN22 test set is a newly created comprehensive benchmark for evaluating machine translation performance in multi-domain, n-way parallel contexts across 22 Indic languages. It has been created from three distinct subsets, namely IN22-Wiki, IN22-Web and IN22-Conv. The Wikipedia and Web sources subsets offer diverse content spanning news, entertainment, culture, legal, and India-centric topics. IN22-Wiki and IN22-Web have been combined and considered for evaluation purposes and released as IN22-Gen. Meanwhile, IN22-Conv the conversation domain subset is designed to assess translation quality in typical day-to-day conversational-style applications.
 
 <table>
 <tbody>
@@ -226,7 +229,6 @@ IN22 test set is a newly created comprehensive benchmark for evaluating machine 
 </table>
 
 You can download the data artifacts released as a part of this work from the [following section](#download-models-and-other-artifacts).
-
 
 ## Preparing Data for Training
 
@@ -253,19 +255,19 @@ python3 scripts/dedup_benchmark.py <in_data_dir> <out_data_dir> <benchmark_dir>
 - `<out_data_dir>`: path to the directory where the deduplicated train data will be written for each language pair in the format `{src_lang}-{tgt_lang}`
 - `<benchmark_dir>`: path to the directory containing the language-wise monolingual side of dev/test set, with monolingual files named as `test.{lang}`
 
-
 ### Using our SPM model and Fairseq dictionary
 
 Once you complete the deduplication of the training data with the available benchmarks, you can preprocess and binarize the data for training models. Please download our trained SPM model and learned Fairseq dictionary using the following links for your experiments.
 
-|                     | En-Indic | Indic-En |
-|---------------------|----------|----------|
-| SPM model | [download](https://indictrans2-public.objectstore.e2enetworks.net/en-indic-spm.zip) | [download](https://indictrans2-public.objectstore.e2enetworks.net/indic-en-spm.zip) |
-| Fairseq dictionary  | [download](https://indictrans2-public.objectstore.e2enetworks.net/en-indic-fairseq-dict.zip) | [download](https://indictrans2-public.objectstore.e2enetworks.net/indic-en-fairseq-dict.zip) |
+|                    | En-Indic                                                                                     | Indic-En                                                                                     | Indic-Indic                                                                                     |
+| ------------------ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| SPM model          | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/en-indic-spm.zip)          | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/indic-en-spm.zip)          | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/indic-indic-spm.zip)          |
+| Fairseq dictionary | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/en-indic-fairseq-dict.zip) | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/indic-en-fairseq-dict.zip) | [download](https://huggingface.co/datasets/ai4bharat/BPCC/resolve/main/additional/indic-indic-fairseq-dict.zip) |
 
 To prepare the data for training En-Indic model, please do the following:
+
 1. Download the SPM model in the experiment directory and rename it as `vocab`.
-2. Download the Fairseq dictionary in the experiment directory and rename it as `final_dict`.
+2. Download the Fairseq dictionary in the experiment directory and rename it as `final_bin`.
 
 Here is the expected directory for training En-Indic model:
 
@@ -289,7 +291,7 @@ en-indic-exp
 │   ├── model.TGT
 │   ├── vocab.SRC
 │   └── vocab.TGT
-└── final_dict
+└── final_bin
     ├── dict.SRC.txt
     └── dict.TGT.txt
 ```
@@ -306,7 +308,6 @@ bash prepare_data_joint_finetuning.sh <exp_dir>
 
 You will need to follow the same steps for data preparation in case of fine-tuning models.
 
-
 ### Training your own SPM models and learning Fairseq dictionary
 
 If you want to train your own SPM model and learn Fairseq dictionary, then please do the following:
@@ -314,15 +315,18 @@ If you want to train your own SPM model and learn Fairseq dictionary, then pleas
 1. Collect a balanced amount of English and Indic monolingual data (we use around 3 million sentences per language-script combination). If some languages have limited data available, increase their representation to achieve a fair distribution of tokens across languages.
 2. Perform script unification for Indic languages wherever possible using `scripts/preprocess_translate.py` and concatenate all Indic data into a single file.
 3. Train two SPM models, one for English and other for Indic side using the following:
+
 ```bash
 spm_train --input=train.indic --model_prefix=<model_name> --vocab_size=<vocab_size> --character_coverage=1.0 --model_type=BPE
 ```
+
 4. Copy the trained SPM models in the experiment directory mentioned earlier and learn the Fairseq dictionary using the following:
+
 ```bash
 bash prepare_data_joint_training.sh <exp_dir>
 ```
-5. You will need to use the same Fairseq dictionary for any subsequent fine-tuning experiments and refer to the steps described above ([link](#using-our-spm-model-and-fairseq-dictionary)).
 
+5. You will need to use the same Fairseq dictionary for any subsequent fine-tuning experiments and refer to the steps described above ([link](#using-our-spm-model-and-fairseq-dictionary)).
 
 ## Training / Fine-tuning
 
@@ -343,15 +347,15 @@ bash finetune.sh <exp_dir> <model_arch> <pretrained_ckpt>
 
 - `<exp_dir>`: path to the directory containing the binarized data
 - `<model_arch>`: custom transformer architecture used for model training
+  - `transformer_18_18` - For IT2 Base models
+  - `transformer_base18L` - For IT2 Distilled models
 - `<pretrained_ckpt>`: path to the fairseq model checkpoint to be loaded for further fine-tuning
 
 You can download the model artifacts released as a part of this work from the [following section](#download-models-and-other-artifacts).
 
 The pretrained checkpoints have 3 directories, a fairseq model directory and 2 CT-ported model directories. Please note that the CT2 models are provided only for efficient inference. For fine-tuning purposes you should use the `fairseq_model`. Post that you can use the [fairseq-ct2-converter](https://opennmt.net/CTranslate2/guides/fairseq.html) to port your fine-tuned checkpoints to CT2 for faster inference.
 
-
 ## Inference
-
 
 ### Fairseq Inference
 
@@ -401,10 +405,9 @@ model.batch_translate(sents, src_lang, tgt_lang)
 model.translate_paragraph(text, src_lang, tgt_lang)
 ```
 
-
 ## Evaluations
 
-We consider the chrF++ as our primary metric. Additionally, we also report the BLEU and Comet scores.
+We consider the chrF++ score as our primary metric. Additionally, we also report the BLEU and Comet scores.
 We also perform statistical significance tests for each metric to ascertain whether the differences are statistically significant.
 
 In order to run our evaluation scripts, you will need to organize the evaluation test sets into the following directory structure:
@@ -473,7 +476,7 @@ bash compute_comet_metrics_significance.sh <devtest_data_dir>
 
 - `<devtest_data_dir>`: path to the evaluation set with language pair subdirectories (for example, flores directory in the above tree structure)
 
-Similarly, to compute the COMET scores and perform significance testing on predictions of different systems, you can use the following	command.
+Similarly, to compute the COMET scores and perform significance testing on predictions of different systems, you can use the following command.
 
 ```bash
 bash compute_comet_score.sh <devtest_data_dir>
@@ -481,9 +484,8 @@ bash compute_comet_score.sh <devtest_data_dir>
 
 - `<devtest_data_dir>`: path to the evaluation set with language pair subdirectories (for example, flores directory in the above tree structure)
 
-Please note that as we compute significance tests with the same script and automate everything, it is best to have all the predictions for all the systems in place to avoid repeating anything. 
+Please note that as we compute significance tests with the same script and automate everything, it is best to have all the predictions for all the systems in place to avoid repeating anything.
 Also, we define the systems in the script itself, if you want to try out other systems, make sure to edit it there itself.
-
 
 ### Baseline Evaluation
 
@@ -491,33 +493,36 @@ To generate the translation results for baseline models such as M2M-100, MBART, 
 
 You can download the translation outputs released as a part of this work from the [following section](#download-models-and-other-artifacts).
 
-
 ## LICENSE
 
 The following table lists the licenses associated with the different artifacts released as a part of this work:
 
-| Artifact                                              | LICENSE   |
-|-------------------------------------------------------|-----------|
-| Existing Mined Corpora (NLLB & Samanantar)            | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)       |
-| Existing Seed Corpora (NLLB-Seed, ILCI, MASSIVE)           | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)       |
-| Newly Added Mined Corpora (Samanantar++ & Comparable) | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)       |
-| Newly Added Seed Corpora (BPCC-H-Wiki & BPCC-H-Daily)               | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) |
-| Newly Created IN-22 test set (IN22-Gen & IN22-Conv)                          | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) |
-| Back-translation data (BPCC-BT)                       | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)       |
-| Model checkpoints                                     | [MIT](https://github.com/ai4bharat/IndicTrans2/blob/main/LICENSE)       |
+| Artifact                                              | LICENSE                                                               |
+| ----------------------------------------------------- | --------------------------------------------------------------------- |
+| Existing Mined Corpora (NLLB & Samanantar)            | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/) |
+| Existing Seed Corpora (NLLB-Seed, ILCI, MASSIVE)      | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/) |
+| Newly Added Mined Corpora (Samanantar++ & Comparable) | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/) |
+| Newly Added Seed Corpora (BPCC-H-Wiki & BPCC-H-Daily) | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)             |
+| Newly Created IN-22 test set (IN22-Gen & IN22-Conv)   | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)             |
+| Back-translation data (BPCC-BT)                       | [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/) |
+| Model checkpoints                                     | [MIT](https://github.com/ai4bharat/IndicTrans2/blob/main/LICENSE)     |
 
 The mined corpora collection (BPCC-Mined), existing seed corpora (NLLB-Seed, ILCI, MASSIVE), Backtranslation data (BPCC-BT), are released under the following licensing scheme:
-* We do not own any of the text from which this data has been extracted.
-* We license the actual packaging of this data under the Creative Commons [CC0 license (“no rights reserved”)](https://creativecommons.org/share-your-work/public-domain/cc0/).
-* To the extent possible under law, [AI4Bharat](https://ai4bharat.iitm.ac.in/) has waived all copyright and related or neighboring rights to BPCC-Mined, existing seed corpora (NLLB-Seed, ILCI, MASSIVE) and BPCC-BT.
+
+- We do not own any of the text from which this data has been extracted.
+- We license the actual packaging of this data under the Creative Commons [CC0 license (“no rights reserved”)](https://creativecommons.org/share-your-work/public-domain/cc0/).
+- To the extent possible under law, [AI4Bharat](https://ai4bharat.iitm.ac.in/) has waived all copyright and related or neighboring rights to BPCC-Mined, existing seed corpora (NLLB-Seed, ILCI, MASSIVE) and BPCC-BT.
 
 ## Citation
 
-```bash
-@article{ai4bharat2023indictrans2,
-  title   = {IndicTrans2: Towards High-Quality and Accessible Machine Translation Models for all 22 Scheduled Indian Languages},
-  author  = {AI4Bharat and Jay Gala and Pranjal A. Chitale and Raghavan AK and Sumanth Doddapaneni and Varun Gumma and Aswanth Kumar and Janki Nawale and Anupama Sujatha and Ratish Puduppully and Vivek Raghavan and Pratyush Kumar and Mitesh M. Khapra and Raj Dabre and Anoop Kunchukuttan},
-  year    = {2023},
-  journal = {arXiv preprint arXiv: 2305.16307}
+```bibtex
+@article{gala2023indictrans,
+title={IndicTrans2: Towards High-Quality and Accessible Machine Translation Models for all 22 Scheduled Indian Languages},
+author={Jay Gala and Pranjal A Chitale and A K Raghavan and Varun Gumma and Sumanth Doddapaneni and Aswanth Kumar M and Janki Atul Nawale and Anupama Sujatha and Ratish Puduppully and Vivek Raghavan and Pratyush Kumar and Mitesh M Khapra and Raj Dabre and Anoop Kunchukuttan},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2023},
+url={https://openreview.net/forum?id=vfT4YuzAYA},
+note={}
 }
 ```

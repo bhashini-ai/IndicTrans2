@@ -12,13 +12,14 @@ conda activate itv2
 
 echo "Installing all the dependencies"
 conda install pip
-python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade pip==24.0
 
 
 # --------------------------------------------------------------
 #                   PyTorch Installation
 # --------------------------------------------------------------
-python3 -m pip install torch --extra-index-url https://download.pytorch.org/whl/cu118
+# python3 -m pip install torch --extra-index-url https://download.pytorch.org/whl/cu118
+pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu118
 
 
 # --------------------------------------------------------------
