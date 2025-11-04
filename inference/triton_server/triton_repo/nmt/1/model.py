@@ -25,7 +25,7 @@ class TritonPythonModel:
         
 
         # checkpoints_root_dir = os.path.join(PWD, "checkpoints")
-        checkpoints_root_dir = "/models/checkpoints"
+        checkpoints_root_dir = "/models/IndicTrans2"
         checkpoint_folders = [ f.path for f in os.scandir(checkpoints_root_dir) if f.is_dir() ]
         # The assumption is that, each folder name is `<src_direction>-to-<tgt_direction>`
 
